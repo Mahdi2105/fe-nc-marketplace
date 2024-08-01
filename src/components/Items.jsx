@@ -5,12 +5,12 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
-import Button from '@mui/material/Button';
+import Button from "@mui/material/Button";
 import { Link } from "react-router-dom";
 
 const Items = () => {
   const [items, setItems] = useState([]);
-  const [categories, setCategories] = useState([])
+  const [categories, setCategories] = useState([]);
   const [category, setCategory] = useState("");
 
   const handleChange = (event) => {
@@ -19,16 +19,15 @@ const Items = () => {
 
   useEffect(() => {
     getItems(category).then((items) => {
-        setItems(items);
-      });
-  }, [category])
- 
+      setItems(items);
+    });
+  }, [category]);
 
   useEffect(() => {
     getCategories().then((categories) => {
-        setCategories(categories)
-      })
-  }, [])
+      setCategories(categories);
+    });
+  }, []);
 
   return (
     <div>
@@ -42,19 +41,27 @@ const Items = () => {
           label="Category"
           onChange={handleChange}
         >
-            <MenuItem key="all-categories" value="">All categories</MenuItem>
-            {categories.map((category) => {
-                return <MenuItem key={category.category_name} value={`?category_name=${category.category_name}`}>{category.category_name}</MenuItem>
-            })} 
+          <MenuItem key="all-categories" value="">
+            All categories
+          </MenuItem>
+          {categories.map((category) => {
+            return (
+              <MenuItem
+                key={category.category_name}
+                value={`?category_name=${category.category_name}`}
+              >
+                {category.category_name}
+              </MenuItem>
+            );
+          })}
         </Select>
       </FormControl>
-      <Link to="/add-item"><Button variant="contained">Add Item</Button></Link>
-      
-      <ul>
-        {items.map((item) => {
-          return <ItemCard key={item.item_id} item={item} />;
-        })}
-      </ul>
+      <Link to="/add-item">
+        <Button variant="contained">Add Item</Button>
+      </Link>
+      {items.map((item) => {
+        return <ItemCard key={item.item_id} item={item} />;
+      })}
     </div>
   );
 };

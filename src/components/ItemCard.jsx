@@ -1,11 +1,16 @@
-const ItemCard = ({item}) => {
-    return (
-        <li>
-            <img src={item.img_url}/>
-            <h3>Name: {item.item_name}</h3>
-            <p>Price: £{item.price}</p>
-        </li>
-    )
-}
+import { Card, CardHeader } from "@mui/material";
+import { Link } from "react-router-dom";
 
-export default ItemCard
+const ItemCard = ({ item }) => {
+  return (
+    <Card>
+      <Link to={`/items/${item.item_id}`}>
+        <CardHeader title={item.item_name} />
+      </Link>
+      <img src={item.img_url} />
+      <p>Price: £{item.price}</p>
+    </Card>
+  );
+};
+
+export default ItemCard;
