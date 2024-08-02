@@ -23,6 +23,7 @@ const getCategories = () => {
 };
 
 const postItem = (newItem) => {
+  console.log(newItem);
   return api.post("/items", newItem);
 };
 

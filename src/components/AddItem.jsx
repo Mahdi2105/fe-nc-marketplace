@@ -1,8 +1,10 @@
-import { Button } from "@mui/material";
 import TextField from "@mui/material/TextField";
 import { postItem } from "../../api";
+import { UserContext } from "../contexts/UserContext";
+import { useContext } from "react";
 
 const AddItem = () => {
+  const { user } = useContext(UserContext);
   function onSubmitItem(event) {
     event.preventDefault();
 
@@ -19,7 +21,7 @@ const AddItem = () => {
       description: itemDesc,
       category_name: itemCategory,
       price: itemPrice,
-      listed_by: 1,
+      listed_by: user.user_id,
     };
 
     postItem(itemObject).then((result) => {
