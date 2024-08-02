@@ -7,11 +7,10 @@ const Header = () => {
       <nav>
         <Link to="/">Home</Link>
         <Link to="/items">Items</Link>
+        <Link to="/users">Login</Link>
       </nav>
     </header>
-    
-  )
- 
+  );
 };
 
 export default Header;

@@ -12,7 +12,6 @@ const getItems = (category_name) => {
 
 const getItemById = (id) => {
   return api.get(`/items/${id}`).then(({ data }) => {
-    console.log();
     return data.item;
   });
 };
@@ -27,4 +26,14 @@ const postItem = (newItem) => {
   return api.post("/items", newItem);
 };
 
-export { getCategories, getItems, postItem, getItemById };
+const getUsers = () => {
+  return api.get("/users").then(({ data }) => {
+    return data.users;
+  });
+};
+
+const postUser = (newUser) => {
+  return api.post("/users", newUser);
+};
+
+export { getCategories, getItems, postItem, getItemById, getUsers, postUser };

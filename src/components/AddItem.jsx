@@ -3,12 +3,15 @@ import TextField from "@mui/material/TextField";
 import { postItem } from "../../api";
 
 const AddItem = () => {
-  function onSubmitItem(formData) {
-    const itemName = formData.get("item-name");
-    const itemImgUrl = formData.get("item-image-url");
-    const itemPrice = formData.get("item-price");
-    const itemCategory = formData.get("item-category");
-    const itemDesc = formData.get("item-description");
+  function onSubmitItem(event) {
+    event.preventDefault();
+
+    console.log(event);
+    const itemName = event.target[0].value;
+    const itemPrice = event.target[4].value;
+    const itemImgUrl = event.target[2].value;
+    const itemCategory = event.target[6].value || null;
+    const itemDesc = event.target[8].value || null;
 
     const itemObject = {
       item_name: itemName,
@@ -27,7 +30,7 @@ const AddItem = () => {
   return (
     <div>
       <h2>Add Item</h2>
-      <form action={onSubmitItem}>
+      <form onSubmit={onSubmitItem}>
         <TextField name="item-name" label="Name" variant="outlined" required />
         <TextField
           name="item-image-url"
@@ -42,11 +45,17 @@ const AddItem = () => {
           variant="outlined"
           required
         />
-        <TextField name="item-category" label="Category" variant="outlined" />
+        <TextField
+          name="item-category"
+          label="Category"
+          variant="outlined"
+          required
+        />
         <TextField
           name="item-description"
           label="Description"
           variant="outlined"
+          required
         />
         <button>Submit</button>
       </form>
